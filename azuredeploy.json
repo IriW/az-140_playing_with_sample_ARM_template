@@ -18,20 +18,23 @@
     },
     "functions": [],
     "variables": {},
-    "resources": [
-        {
-        "name": "storageaccountvzhiri",
+    "resources": [{
         "type": "Microsoft.Storage/storageAccounts",
         "apiVersion": "2021-04-01",
-        "tags": {
-            "displayName": "storageaccountvzhiri"
+        "name": "storageaccountvzhiri",
+        "sku": {
+            "name": "[parameters('storageAccountType')]"
         },
         "location": "[resourceGroup().location]",
         "kind": "StorageV2",
-        "sku": {
-            "name": "Standard_LRS",
-            "tier": "Standard"
+        "properties": {
+            "supportsHttpsTrafficOnly": true
         }
     }],
-    "outputs": {}
+    "outputs": {
+       "storageEndpoint": {
+           "type": "object",
+           "value": "[reference('storageaccountvzhiri').primaryEndpoints]"
+       }
+   }
 }
