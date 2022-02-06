@@ -14,6 +14,14 @@
             "metadata": {
                 "description": "Storage Account Type"
             }
+        },
+        "storageName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 24,
+            "metadata": {
+                "description": "The name of Azure Storage resource"
+            }
         }
     },
     "functions": [],
@@ -21,20 +29,19 @@
     "resources": [{
         "type": "Microsoft.Storage/storageAccounts",
         "apiVersion": "2021-04-01",
-        "name": "storageaccountvzhiri",
+        "name": "[parameters('storageName')]",
         "sku": {
-            "name": "[parameters('storageAccountType')]"
+            "name": "[parameters('storageAccountType')]",
+            "tier": "Standard"
         },
         "location": "[resourceGroup().location]",
         "kind": "StorageV2",
         "properties": {
             "supportsHttpsTrafficOnly": true
+        },
+        "tags": {
+            "displayName": "[parameters('storageName')]"
         }
     }],
-    "outputs": {
-       "storageEndpoint": {
-           "type": "object",
-           "value": "[reference('storageaccountvzhiri').primaryEndpoints]"
-       }
-   }
+    "outputs": {}
 }
