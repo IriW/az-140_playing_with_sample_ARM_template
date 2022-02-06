@@ -17,7 +17,7 @@ It also generates a sample output
 
 
 ### Prerequisites  <a name = "prerequisites"></a>
-
+```
 VSCode
 ```
 Azure subscription
@@ -25,3 +25,4 @@ Azure subscription
 CLI installed locally
 ```
 Alternatively the template can be deployed via Azure portal directly.
+```
